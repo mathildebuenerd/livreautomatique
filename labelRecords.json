@@ -1,0 +1,133 @@
+{
+"images":
+
+{
+    "fonds-ecran-poisson-9.jpg": [
+        {
+            "score": 0.9553225, 
+            "description": "fish"
+        }, 
+        {
+            "score": 0.93785673, 
+            "description": "goldfish"
+        }, 
+        {
+            "score": 0.91596824, 
+            "description": "vertebrate"
+        }, 
+        {
+            "score": 0.885028, 
+            "description": "marine biology"
+        }, 
+        {
+            "score": 0.8475461, 
+            "description": "yellow"
+        }, 
+        {
+            "score": 0.8455444, 
+            "description": "fauna"
+        }, 
+        {
+            "score": 0.6423164, 
+            "description": "pomacentridae"
+        }, 
+        {
+            "score": 0.63461417, 
+            "description": "biology"
+        }, 
+        {
+            "score": 0.6321366, 
+            "description": "freshwater aquarium"
+        }, 
+        {
+            "score": 0.58932394, 
+            "description": "fish"
+        }
+    ], 
+    "plante-carnivore-dionaea.jpg": [
+        {
+            "score": 0.860595, 
+            "description": "plant"
+        }, 
+        {
+            "score": 0.83118975, 
+            "description": "carnivorous plant"
+        }, 
+        {
+            "score": 0.78965676, 
+            "description": "botany"
+        }, 
+        {
+            "score": 0.6976304, 
+            "description": "land plant"
+        }, 
+        {
+            "score": 0.6334033, 
+            "description": "flower"
+        }
+    ], 
+    "poisson-discu-aquarium.jpg": [
+        {
+            "score": 0.93929845, 
+            "description": "fish"
+        }, 
+        {
+            "score": 0.8962187, 
+            "description": "marine biology"
+        }, 
+        {
+            "score": 0.8854972, 
+            "description": "pomacanthidae"
+        }, 
+        {
+            "score": 0.8455444, 
+            "description": "fauna"
+        }, 
+        {
+            "score": 0.811162, 
+            "description": "coral reef fish"
+        }, 
+        {
+            "score": 0.808012, 
+            "description": "freshwater aquarium"
+        }, 
+        {
+            "score": 0.80035466, 
+            "description": "underwater"
+        }, 
+        {
+            "score": 0.7984295, 
+            "description": "biology"
+        }, 
+        {
+            "score": 0.7625961, 
+            "description": "close up"
+        }, 
+        {
+            "score": 0.7288878, 
+            "description": "organism"
+        }, 
+        {
+            "score": 0.712984, 
+            "description": "aquarium"
+        }, 
+        {
+            "score": 0.70487314, 
+            "description": "macro photography"
+        }, 
+        {
+            "score": 0.6920837, 
+            "description": "pomacentridae"
+        }, 
+        {
+            "score": 0.6085551, 
+            "description": "reef"
+        }, 
+        {
+            "score": 0.50631744, 
+            "description": "deep sea fish"
+        }
+    ]
+}
+
+}
