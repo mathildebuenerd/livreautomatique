@@ -6,8 +6,9 @@ var images = [];
 // Variables
 var inWidth = "8.5in";
 var inHeight = "11in";
-var imagesPerPage = 3;
+var imagesPerPage = 1;
 var resizeType = 'adapt'; // can either adapt or fit 
+var keywordsToDisplay = ['all']; // put every keywords you want to display, or set to ['all'] 
 
 
 createBalises();
@@ -20,17 +21,20 @@ for (var key in jsonData.images) {
 	// on vérifie que l'objet possède bien unekey
 	if (jsonData.images.hasOwnProperty(key)) {
 		console.log("key " + key);
-		images.push(new Image(key,counter));
+		var keywordsArray = [];
 		for (var keyword in jsonData.images[key]) {
 			if (jsonData.images[key].hasOwnProperty(keyword)) {
 				// accéder au(x) mot(s) clé(s)
 				console.log(jsonData.images[key][keyword].description);
 				// accéder au pourcentage
 				console.log(jsonData.images[key][keyword].score);
-
+				// on ajoute chaque mot-clé dans un array
+				keywordsArray.push(jsonData.images[key][keyword].description);
 			}
-		}
 
+		}
+		// on ajoute l'image avec son id, son url et ses motsclés
+		images.push(new Image(counter,key,keywordsArray));
 	}
 	counter++;
 	
@@ -38,7 +42,19 @@ for (var key in jsonData.images) {
 
 // on crée les balises
 for (var i=0; i<images.length; i++) {
-	images[i].create();
+	// si on a choisi des keywords à sélectionner
+	if (keywordsToDisplay[0] != 'all') {
+		images[i].checkKeywords();
+		// si on a trouvé un keyword on affiche l'image
+		if (images[i].containKeywords) {
+			images[i].create();
+		}
+		// si on a mis keywordsToDisplay à 'all', on affiche juste toutes les images
+	} else {
+		images[i].create();
+	}
+	
+	
 }	
 
 setContainerWidth();
@@ -89,23 +105,41 @@ function setContainerWidth() {
 
 var isPageFull;
 
-function Image(_name, _id) {
+function Image(_id, _name, _keywordsArray) {
 
 	this.name = _name;
 	this.id = _id;
+	this.keywordsArray = _keywordsArray;
+	this.containKeywords = false;
 	var firstPage;
 	var pageNumber;
 	var imageNumber;
 
+	Image.prototype.checkKeywords = function() {
+		// on regarde chaque mot clé de l'image en question
+		for (var i=0; i<this.keywordsArray.length; i++) {
+			// on regarde les keywords attendus
+			for (var j=0; j<keywordsToDisplay.length; j++) {
+				if (keywordsToDisplay[j] == this.keywordsArray[i]) {
+					this.containKeywords = true;
+					// si on a trouvé un des keywords, on arrête la boucle
+					return; 
+				}
+			}
+		}
+	}
+
 	Image.prototype.create = function() {
 
 		if (this.id == 0) {
-		firstPage = true;
-		pageNumber = 0;
-		imageNumber = 0;
-	} else {
-		firstPage = false;
-	}
+			firstPage = true;
+			pageNumber = 0;
+			imageNumber = 0;
+		} else {
+			firstPage = false;
+		}
+
+		console.log("keyw array " + this.keywordsArray);
 
 		// console.log("firstPage value " + firstPage);
 
