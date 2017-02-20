@@ -27,41 +27,73 @@
 			-webkit-print-color-adjust: exact; 
 		}
 
-		.page {
+		div {
 			height: 11in;
 			width: 8.5in;
 			background-color: #ff0000;
-			overflow: hidden;
 		}
 
 	}
 
-	.page {	
+	div {
 			height: 11in;
 			width: 8.5in;
 			background-color: black;
 			border: 2px solid red;
 			/*la taille du div est la taille avec les bordures*/
 			box-sizing: border-box;
-			overflow: hidden;
 		}
-
-		img {
-			width: 6in;
-		}
-
-	#first {
-		display: none;
-	}
 
 
 	</style>
 </head>
-
 <body>
 
-<div id="first"></div>
-
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
 
 
 <script src="labelRecords.js" type="text/javascript"></script>

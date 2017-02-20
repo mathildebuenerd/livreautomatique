@@ -4,7 +4,7 @@ var jsonData = JSON.parse(data);
 var images = [];
 
 // Variables
-var imagesPerPage = 1;
+var imagesPerPage = 3;
 
 
 createBalises();
@@ -50,42 +50,63 @@ function createPage(imagePerPage) {
 }
 
 
-var firstPage = true;
 var isPageFull;
-var pageNumber = 0;
-var page;
 
 function Image(_name, _id) {
 
 	this.name = _name;
 	this.id = _id;
+	var firstPage;
+	var pageNumber;
+	var imageNumber;
 
 	Image.prototype.create = function() {
 
+		if (this.id == 0) {
+		firstPage = true;
+		pageNumber = 0;
+		imageNumber = 0;
+	} else {
+		firstPage = false;
+	}
 
+		console.log("firstPage value " + firstPage);
 
 		// crée une nouvelle page quand une page est pleine
-		if (firstPage || isPageFull) {
-			page = document.createElement('div');
+		if (firstPage  == true || isPageFull) {
+			console.log('first page');
+			var page = document.createElement('div');
 			page.setAttribute('class', 'page');
 			page.setAttribute('id', 'page-' + pageNumber);
 			document.body.appendChild(page);
-			pageNumber++;
+			// if (firstPage == false) {
+			// 	pageNumber++;
+			// }
+			
 			isPageFull = false;
+		} else {
+			// sinon va sur la page en cours
+			console.log('not first page');
+			var page = document.getElementById('page-' + pageNumber);
 		}
 
 
-
+		console.log('page ' + page);
+		console.log('pageNumber ' + pageNumber);
 		var image = document.createElement('img');
 		image.setAttribute('src', 'img/' + this.name);
 		page.appendChild(image);
+		imageNumber++;
 
-		pageNumber++;
+		
 
 		// si on a suffisement d'images dans la page on passe à la page suivante
-		if (pageNumber!= 0 && pageNumber%imagesPerPage==0) {
+		if (imageNumber%imagesPerPage==0) {
 			isPageFull = true;
+			pageNumber++;
 		}
+
+
 		
 
 	}
