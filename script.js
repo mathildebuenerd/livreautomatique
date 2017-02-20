@@ -4,10 +4,14 @@ var jsonData = JSON.parse(data);
 var images = [];
 
 // Variables
+var inWidth = "8.5in";
+var inHeight = "11in";
 var imagesPerPage = 3;
+var resizeType = 'adapt'; // can either adapt or fit 
 
 
 createBalises();
+
 
 function createBalises() {
 	var counter = 0;
@@ -37,15 +41,48 @@ for (var i=0; i<images.length; i++) {
 	images[i].create();
 }	
 
+setContainerWidth();
+
 }
 
+// resize function
+// needs to be called after the images are loaded
+document.body.onload = function() {
 
-
-function createPage(imagePerPage) {
-	for (var i=0; i<images.length; i+=imagePerPage) {
-		for (var j=0; j<i+imagePerPage; j++) {
-			images[j].create();
+	if(resizeType == 'adapt') {
+		var imgs = document.querySelectorAll('img');
+		for (var i=0; i<imgs.length; i++) {
+			// si l'image est format paysage
+			if (imgs[i].naturalWidth > imgs[i].naturalHeight) {
+				imgs[i].style.height = inHeight;
+			// si l'image est format portrait ou carrée
+			} else {
+				imgs[i].style.width = inWidth;
+			} 
 		}
+	}
+
+	if(resizeType == 'fit') {
+		var imgs = document.querySelectorAll('img');
+		for (var i=0; i<imgs.length; i++) {
+			// si l'image est format paysage
+			if (imgs[i].naturalWidth > imgs[i].naturalHeight) {
+				imgs[i].style.width = inWidth;
+			// si l'image est format portrait ou carrée
+			} else {
+				imgs[i].style.height = inHeight;
+			} 
+		}
+
+	}
+}
+
+// met une taille au conteneur en fonction du nombre d'images par page
+function setContainerWidth() {
+	var conteneurs = document.getElementsByClassName('conteneur');
+	for(var i=0; i<conteneurs.length; i++) {
+		conteneurs[i].style.width = inWidth;
+		conteneurs[i].style.height = parseInt(inHeight)/imagesPerPage + 'in'; // inHeight = 11in so we need to parseInt
 	}
 }
 
@@ -70,11 +107,11 @@ function Image(_name, _id) {
 		firstPage = false;
 	}
 
-		console.log("firstPage value " + firstPage);
+		// console.log("firstPage value " + firstPage);
 
 		// crée une nouvelle page quand une page est pleine
 		if (firstPage  == true || isPageFull) {
-			console.log('first page');
+			// console.log('first page');
 			var page = document.createElement('div');
 			page.setAttribute('class', 'page');
 			page.setAttribute('id', 'page-' + pageNumber);
@@ -86,19 +123,21 @@ function Image(_name, _id) {
 			isPageFull = false;
 		} else {
 			// sinon va sur la page en cours
-			console.log('not first page');
+			// console.log('not first page');
 			var page = document.getElementById('page-' + pageNumber);
 		}
 
 
-		console.log('page ' + page);
-		console.log('pageNumber ' + pageNumber);
+		// console.log('page ' + page);
+		// console.log('pageNumber ' + pageNumber);
+		var conteneur = document.createElement('div');
+		conteneur.setAttribute('class', 'conteneur');
+		page.appendChild(conteneur);
 		var image = document.createElement('img');
 		image.setAttribute('src', 'img/' + this.name);
-		page.appendChild(image);
+		image.setAttribute('id', 'img-' + this.id);
+		conteneur.appendChild(image);
 		imageNumber++;
-
-		
 
 		// si on a suffisement d'images dans la page on passe à la page suivante
 		if (imageNumber%imagesPerPage==0) {
